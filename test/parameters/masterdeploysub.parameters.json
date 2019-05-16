@@ -56,8 +56,8 @@
                     "templateLink": "https://raw.githubusercontent.com/canada-ca-azure-templates/active-directory/20190516/template/azuredeploy.json",
                     "parametersFile": "dependancy-active-directory.parameters.json",
                     "dependsOn": [
-                        "backup-vault",
                         "key-vault",
+                        "backup-vault",
                         "vnet-subnet"
                     ]
                 }
