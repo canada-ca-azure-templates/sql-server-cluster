@@ -3,12 +3,12 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "containerSasToken": {
-            "value": "[SasToken]"
+            "value": ""
         },
         "keyVaultConfig": {
             "value": {
                 "existingRGName": "PwS2-validate-sql-server-cluster-RG",
-                "existingVaultName": "PwS2-validate-sql-server-cluster-KeyVault",
+                "existingVaultName": "cluster-KeyVault",
                 "localAdminPasswordSecret": "server2016DefaultPassword",
                 "domainAdminPasswordSecret": "adDefaultPassword"
             }
