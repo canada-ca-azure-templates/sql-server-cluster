@@ -5,7 +5,7 @@
         "keyvaultArray": {
             "value": [
                 {
-                    "name": "cluster-KeyVault",
+                    "name": "PwS2-cluster-KeyVault",
                     "resourceGroup": "PwS2-validate-sql-server-cluster-RG",
                     "sku": "Standard",
                     "enabledForDeployment": true,

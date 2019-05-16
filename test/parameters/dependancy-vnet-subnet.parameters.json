@@ -20,7 +20,7 @@
                         {
                             "name": "DB",
                             "properties": {
-                                "addressPrefix": "10.250.29.0/24"
+                                "addressPrefix": "10.250.2.0/26"
                             }
                         }
                     ],

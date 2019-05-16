@@ -8,7 +8,7 @@
         "keyVaultConfig": {
             "value": {
                 "existingRGName": "PwS2-validate-sql-server-cluster-RG",
-                "existingVaultName": "cluster-KeyVault",
+                "existingVaultName": "PwS2-cluster-KeyVault",
                 "localAdminPasswordSecret": "server2016DefaultPassword",
                 "domainAdminPasswordSecret": "adDefaultPassword"
             }
@@ -17,7 +17,7 @@
             "value": {
                 "existingVnetName": "PwS2-validate-sql-server-cluster-VNET",
                 "existingVnetRG": "PwS2-validate-sql-server-cluster-RG",
-                "sqlSubnet": "10.250.29.0/26",
+                "sqlSubnet": "10.250.2.0/26",
                 "dbSubnetName": "DB"
             }
         },
@@ -36,7 +36,7 @@
         "sqlServerConfig": {
             "value": {
                 "ClusterIp": "169.254.1.1",
-                "sqlLBIPAddress": "10.250.29.14",
+                "sqlLBIPAddress": "10.250.2.14",
                 "sqlLBName": "PwS2TSQL-LB",
                 "sqlAOListenerPort": "1433",
                 "vmSize": "Standard_DS3_v2",
