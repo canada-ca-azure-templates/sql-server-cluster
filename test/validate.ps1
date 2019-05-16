@@ -70,7 +70,7 @@ if (-not $doNotCleanup) {
 # Start the deployment
 Write-Host "Starting $templateLibraryName dependancies deployment...";
 
-New-AzureRmDeployment -Location $Location -Name "Deploy-$templateLibraryName-Dependancies" -TemplateUri "https://raw.githubusercontent.com/canada-ca-azure-templates/masterdeploy/20190514/template/masterdeploysub.json" -TemplateParameterFile (Resolve-Path -Path "$PSScriptRoot\parameters\masterdeploysub.parameters.json") -baseParametersURL $baseParametersURL -Verbose;
+New-AzureRmDeployment -Location $Location -Name "Deploy-$templateLibraryName-Dependancies" -TemplateUri "https://raw.githubusercontent.com/canada-ca-azure-templates/masterdeploy/20190514/template/masterdeploysubrg.json" -TemplateParameterFile (Resolve-Path -Path "$PSScriptRoot\parameters\masterdeploysub.parameters.json") -baseParametersURL $baseParametersURL -Verbose;
 
 $provisionningState = (Get-AzureRmDeployment -Name "Deploy-$templateLibraryName-Dependancies").ProvisioningState
 
