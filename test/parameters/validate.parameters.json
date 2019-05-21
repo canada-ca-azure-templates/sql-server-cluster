@@ -112,14 +112,14 @@
         "backupConfig": {
             "value": {
                 "existingBackupVaultRG": "PwS2-validate-sql-server-cluster-RG",
-                "existingBackupVaultName": "PwS2-validate-sql-server-cluster-Vault",
+                "existingBackupVaultName": "PwS2-Sql-Backup-Vault",
                 "existingBackupPolicy": "DailyBackupPolicy"
             }
         },
         "tagValues": {
             "value": {
                 "workload": "Database",
-                "owner": "john.nephin@tpsgc-pwgsc.gc.ca",
+                "owner": "validation.test@tpsgc-pwgsc.gc.ca",
                 "businessUnit": "PSPC-CCC",
                 "costCenterOwner": "PSPC-EA",
                 "environment": "Sandbox",

@@ -65,22 +65,22 @@ if (-not $doNotCleanup) {
 
         Remove-AzureRmResourceGroup -Name PwS2-validate-$templateLibraryName-RG -Verbose -Force
     }
+
+
+    # Start the deployment
+    Write-Host "Starting $templateLibraryName dependancies deployment...";
+
+    New-AzureRmDeployment -Location $Location -Name "Deploy-$templateLibraryName-Dependancies-01" -TemplateUri "https://raw.githubusercontent.com/canada-ca-azure-templates/masterdeploy/20190514/template/masterdeploysubrg.json" -TemplateParameterFile (Resolve-Path -Path "$PSScriptRoot\parameters\masterdeploysub-01.parameters.json") -baseParametersURL $baseParametersURL -Verbose;
+    New-AzureRmDeployment -Location $Location -Name "Deploy-$templateLibraryName-Dependancies-02" -TemplateUri "https://raw.githubusercontent.com/canada-ca-azure-templates/masterdeploy/20190514/template/masterdeployrg.json" -TemplateParameterFile (Resolve-Path -Path "$PSScriptRoot\parameters\masterdeploysub-02.parameters.json") -baseParametersURL $baseParametersURL -Verbose;
+
+    $provisionningState = (Get-AzureRmDeployment -Name "Deploy-$templateLibraryName-Dependancies-01").ProvisioningState
+    $provisionningState2 = (Get-AzureRmDeployment -Name "Deploy-$templateLibraryName-Dependancies-02").ProvisioningState
+
+    if ($provisionningState -eq "Failed" -or $provisionningState2 -eq "Failed") {
+        Write-Host "One of the jobs was not successfully created... exiting..."
+        exit
+    }
 }
-
-# Start the deployment
-Write-Host "Starting $templateLibraryName dependancies deployment...";
-
-New-AzureRmDeployment -Location $Location -Name "Deploy-$templateLibraryName-Dependancies-01" -TemplateUri "https://raw.githubusercontent.com/canada-ca-azure-templates/masterdeploy/20190514/template/masterdeploysubrg.json" -TemplateParameterFile (Resolve-Path -Path "$PSScriptRoot\parameters\masterdeploysub-01.parameters.json") -baseParametersURL $baseParametersURL -Verbose;
-New-AzureRmDeployment -Location $Location -Name "Deploy-$templateLibraryName-Dependancies-02" -TemplateUri "https://raw.githubusercontent.com/canada-ca-azure-templates/masterdeploy/20190514/template/masterdeployrg.json" -TemplateParameterFile (Resolve-Path -Path "$PSScriptRoot\parameters\masterdeploysub-02.parameters.json") -baseParametersURL $baseParametersURL -Verbose;
-
-$provisionningState = (Get-AzureRmDeployment -Name "Deploy-$templateLibraryName-Dependancies-01").ProvisioningState
-$provisionningState2 = (Get-AzureRmDeployment -Name "Deploy-$templateLibraryName-Dependancies-02").ProvisioningState
-
-if ($provisionningState -eq "Failed"-or $provisionningState2 -eq "Failed") {
-    Write-Host "One of the jobs was not successfully created... exiting..."
-    exit
-}
-
 # Validating server template
 Write-Host "Starting $templateLibraryName validation deployment...";
 
