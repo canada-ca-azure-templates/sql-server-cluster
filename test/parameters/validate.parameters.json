@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "containerSasToken": {
+        "containerSasToken":{
             "value": ""
         },
         "keyVaultConfig": {
@@ -35,12 +35,12 @@
         },
         "sqlServerConfig": {
             "value": {
-                "ClusterIp": "169.254.1.1",
-                "sqlLBIPAddress": "10.250.2.14",
-                "sqlLBName": "PwS2TSQL-LB",
+                "ClusterIp": "169.254.1.5",
+                "sqlLBIPAddress": "10.250.2.132",
+                "sqlLBName": "PwS3SPSQL-LB",
                 "sqlAOListenerPort": "1433",
-                "vmSize": "Standard_DS3_v2",
-                "vmName": "PwS2TSTSQL",
+                "vmSize": "Standard_E4s_v3",
+                "vmName": "PwS3SPSQL",
                 "sqlServerLicenseType": "AHUB",
                 "sqlpatchingConfig": {
                     "patchingEnabled": true,
@@ -50,12 +50,12 @@
                 },
                 "backupConfig": {
                     "backupEnabled": true,
-                    "RetentionPeriod": 30,
+                    "RetentionPeriod": 14,
                     "EnableEncryption": true
                 },
                 "sqlBackupConfig": {
                     "backupEnabled": true,
-                    "retentionPeriod": 30,
+                    "retentionPeriod": 14,
                     "enableEncryption": true,
                     "backupSystemDbs": true,
                     "backupScheduleType": "Manual",
@@ -67,7 +67,7 @@
                 },
                 "imageReference": {
                     "sqlImagePublisher": "MicrosoftSQLServer",
-                    "offer": "SQL2016SP2-WS2016",
+                    "offer": "SQL2017-WS2016",
                     "sku": "Enterprise",
                     "version": "latest"
                 },
@@ -76,19 +76,19 @@
                     "diskSizeGB": "1024"
                 },
                 "workloadType": "OLTP",
-                "sqlServerServiceAccountUserName": "svc-tstsql1",
-                "sqlStorageAccountName": "tstsqlstorage11",
+                "sqlServerServiceAccountUserName": "svc-spsql1",
+                "sqlStorageAccountName": "spsqlstorage01",
                 "sqlStorageAccountType": "Standard_LRS",
                 "diagBlobEncryptionEnabled": true,
-                "sqlDatabases": "TestServer",
+                "sqlDatabases": "TestDB",
                 "sqlServerServiceAccountPassword": "sqlServerServiceAccountPassword",
-                "enableAcceleratedNetworking": false
+                "enableAcceleratedNetworking": true
             }
         },
         "witnessServerConfig": {
             "value": {
                 "vmSize": "Standard_DS2_v2",
-                "vmName": "PwS2TSTSQLW",
+                "vmName": "PwS3SPSQLW",
                 "imageReference": {
                     "publisher": "MicrosoftWindowsServer",
                     "offer": "WindowsServer",
@@ -98,7 +98,8 @@
                 "dataDisks": {
                     "diskSizeGB": "128"
                 },
-                "sqlStorageAccountType": "Standard_LRS"
+                "sqlStorageAccountType": "Standard_LRS",
+                "enableAcceleratedNetworking": true
             }
         },
         "adConfig": {
@@ -118,8 +119,8 @@
         "tagValues": {
             "value": {
                 "workload": "Database",
-                "owner": "validation.test@tpsgc-pwgsc.gc.ca",
-                "businessUnit": "PSPC-CCC",
+                "owner": "john.nephin@tpsgc-pwgsc.gc.ca",
+                "businessUnit": "PSPC-GCPS",
                 "costCenterOwner": "PSPC-EA",
                 "environment": "Sandbox",
                 "classification": "Unclassified",
