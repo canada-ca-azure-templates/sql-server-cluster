@@ -3,7 +3,8 @@ Param(
     [string]$Location = "canadacentral",
     [string]$subscription = "",
     [switch]$devopsCICD = $false,
-    [switch]$doNotCleanup = $false
+    [switch]$doNotCleanup = $false,
+    [switch]$doNotDeployPreReq = $false
 )
 
 #******************************************************************************
@@ -65,8 +66,8 @@ if (-not $doNotCleanup) {
 
         Remove-AzureRmResourceGroup -Name PwS2-validate-$templateLibraryName-RG -Verbose -Force
     }
-
-
+}
+if (-not $devopsCICD) {
     # Start the deployment
     Write-Host "Starting $templateLibraryName dependancies deployment...";
 

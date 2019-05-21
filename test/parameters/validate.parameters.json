@@ -98,15 +98,14 @@
                 "dataDisks": {
                     "diskSizeGB": "128"
                 },
-                "sqlStorageAccountType": "Standard_LRS",
-                "enableAcceleratedNetworking": true
+                "sqlStorageAccountType": "Standard_LRS"
             }
         },
         "adConfig": {
             "value": {
                 "domainName": "pspc.gc.ca.local",
-                "serverOUPath": "",
-                "accountOUPath": ""
+                "serverOUPath": "CN=Computers,DC=shared,DC=pws3,DC=pspc,DC=gc,DC=ca, DC=local",
+                "accountOUPath": "CN=Users,DC=shared,DC=pws3,DC=pspc,DC=gc,DC=ca, DC=local"
             }
         },
         "backupConfig": {
