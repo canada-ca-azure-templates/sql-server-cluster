@@ -82,7 +82,7 @@
                 "diagBlobEncryptionEnabled": true,
                 "sqlDatabases": "TestServer",
                 "sqlServerServiceAccountPassword": "sqlServerServiceAccountPassword",
-                "enableAcceleratedNetworking": true
+                "enableAcceleratedNetworking": false
             }
         },
         "witnessServerConfig": {
