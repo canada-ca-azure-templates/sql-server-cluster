@@ -272,6 +272,237 @@
                     }
                 }
             }
+        },
+        {
+            "name": "UpdatingSQLWNic",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2018-05-01",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/ProvisioningVMs"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('configuration').nicTemplateURL]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "nicName": {
+                        "value": "[variables('sqlwNicName')]"
+                    },
+                    "ipConfigurations": {
+                        "value": [
+                            {
+                                "name": "ipconfig1",
+                                "properties": {
+                                    "privateIPAllocationMethod": "Dynamic",
+                                    "subnet": {
+                                        "id": "[variables('sqlSubnetRef')]"
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "tagValues": {
+                        "value": "[parameters('tagValues')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatingSQL0Nic",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2018-05-01",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/UpdatingSQLWNic"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('configuration').nicTemplateURL]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "nicName": {
+                        "value": "[concat(parameters('sqlServerConfig').vmName, '0-NIC')]"
+                    },
+                    "ipConfigurations": {
+                        "value": [
+                            {
+                                "name": "ipconfig1",
+                                "properties": {
+                                    "privateIPAllocationMethod": "Dynamic",
+                                    "subnet": {
+                                        "id": "[variables('sqlSubnetRef')]"
+                                    },
+                                    "loadBalancerBackendAddressPools": [
+                                        {
+                                            "id": "[variables('derivedIds').sqlBEAddressPoolID]"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "tagValues": {
+                        "value": "[parameters('tagValues')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatingSQL1Nic",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2018-05-01",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/UpdatingSQL0Nic"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('configuration').nicTemplateURL]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "nicName": {
+                        "value": "[concat(parameters('sqlServerConfig').vmName, '1-NIC')]"
+                    },
+                    "ipConfigurations": {
+                        "value": [
+                            {
+                                "name": "ipconfig1",
+                                "properties": {
+                                    "privateIPAllocationMethod": "Dynamic",
+                                    "subnet": {
+                                        "id": "[variables('sqlSubnetRef')]"
+                                    },
+                                    "loadBalancerBackendAddressPools": [
+                                        {
+                                            "id": "[variables('derivedIds').sqlBEAddressPoolID]"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "tagValues": {
+                        "value": "[parameters('tagValues')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "PreparingAlwaysOnSqlServer",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2018-05-01",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/UpdatingSQL0Nic"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('configuration').preparingAlwaysOnSqlServer]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "sqlVMName": {
+                        "value": "[parameters('sqlServerConfig').vmName]"
+                    },
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "adminUsername": {
+                        "value": "[parameters('adminUsername')]"
+                    },
+                    "adminPassword": {
+                        "reference": {
+                            "keyVault": {
+                                "id": "[variables('derivedIds').keyVaultId]"
+                            },
+                            "secretName": "[parameters('keyVaultConfig').localAdminPasswordSecret]"
+                        }
+                    },
+                    "domainUsername": {
+                        "value": "[parameters('domainUsername')]"
+                    },
+                    "domainPassword": {
+                        "reference": {
+                            "keyVault": {
+                                "id": "[variables('derivedIds').keyVaultId]"
+                            },
+                            "secretName": "[parameters('keyVaultConfig').domainAdminPasswordSecret]"
+                        }
+                    },
+                    "domainName": {
+                        "value": "[parameters('adConfig').domainName]"
+                    },
+                    "serverOUPath": {
+                        "value": "[parameters('adConfig').serverOUPath]"
+                    },
+                    "accountOUPath": {
+                        "value": "[parameters('adConfig').accountOUPath]"
+                    },
+                    "sqlAOPrepareModulesURL": {
+                        "value": "[variables('configuration').sqlAOPrepareModulesURL]"
+                    },
+                    "sqlAOPrepareConfigurationFunction": {
+                        "value": "[variables('configuration').sqlAOPrepareConfigurationFunction]"
+                    },
+                    "sqlAOEPName": {
+                        "value": "[variables('sqlAOEPName')]"
+                    },
+                    "sqlServerServiceAccountUserName": {
+                        "value": "[parameters('sqlServerConfig').sqlServerServiceAccountUserName]"
+                    },
+                    "sqlServerServiceAccountPassword": {
+                        "reference": {
+                            "keyVault": {
+                                "id": "[variables('derivedIds').keyVaultId]"
+                            },
+                            "secretName": "[parameters('sqlServerConfig').sqlServerServiceAccountPassword]"
+                        }
+                    },
+                    "sharePath": {
+                        "value": "[variables('sharePath')]"
+                    },
+                    "sqlwVMName": {
+                        "value": "[parameters('witnessServerConfig').vmName]"
+                    },
+                    "fswModulesURL": {
+                        "value": "[variables('configuration').fswModulesURL]"
+                    },
+                    "fswConfigurationFunction": {
+                        "value": "[variables('configuration').fswConfigurationFunction]"
+                    },
+                    "sqlPatchingConfig": {
+                        "value": "[parameters('sqlServerConfig').sqlPatchingConfig]"
+                    },
+                    "sqlBackupConfig": {
+                        "value": "[parameters('sqlServerConfig').sqlBackupConfig]"
+                    },
+                    "numberOfDisks": {
+                        "value": "[parameters('sqlServerConfig').dataDisks.numberOfSqlVMDisks]"
+                    },
+                    "workloadType": {
+                        "value": "[parameters('sqlServerConfig').workloadType]"
+                    },
+                    "sqlStorageAccountName": {
+                        "value": "[parameters('sqlServerConfig').sqlStorageAccountName]"
+                    },
+                    "sqlServerLicenseType": {
+                        "value": "[if(contains(parameters('sqlServerConfig'), 'sqlServerLicenseType'), parameters('sqlServerConfig').sqlServerLicenseType, 'PAYG')]"
+                    }
+                }
+            }
         }
     ],
     "outputs": {}
