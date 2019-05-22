@@ -105,8 +105,8 @@
         "adConfig": {
             "value": {
                 "domainName": "pspc.gc.ca.local",
-                "serverOUPath": "",
-                "accountOUPath": ""
+                "serverOUPath": "CN=Computers,DC=pspc,DC=gc,DC=ca,DC=local",
+                "accountOUPath": "CN=Users,DC=pspc,DC=gc,DC=ca,DC=local"
             }
         },
         "backupConfig": {
@@ -119,7 +119,7 @@
         "tagValues": {
             "value": {
                 "workload": "Database",
-                "owner": "test.validate@tpsgc-pwgsc.gc.ca",
+                "owner": "test@tpsgc-pwgsc.gc.ca",
                 "businessUnit": "PSPC-GCPS",
                 "costCenterOwner": "PSPC-EA",
                 "environment": "Sandbox",
