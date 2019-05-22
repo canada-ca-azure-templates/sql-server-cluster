@@ -35,8 +35,8 @@
         },
         "sqlServerConfig": {
             "value": {
-                "ClusterIp": "169.254.1.5",
-                "sqlLBIPAddress": "10.250.2.132",
+                "ClusterIp": "169.254.1.1",
+                "sqlLBIPAddress": "10.250.2.8",
                 "sqlLBName": "PwS3SPSQL-LB",
                 "sqlAOListenerPort": "1433",
                 "vmSize": "Standard_E4s_v3",
