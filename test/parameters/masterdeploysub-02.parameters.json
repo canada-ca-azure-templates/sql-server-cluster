@@ -8,7 +8,10 @@
                     "name": "vnet-subnet-update",
                     "location": "canadacentral",
                     "templateLink": "https://raw.githubusercontent.com/canada-ca-azure-templates/vnet-subnet/20190516/template/azuredeploysub.json",
-                    "parametersFile": "dependancy-vnet-subnet-update.parameters.json"
+                    "parametersFile": "dependancy-vnet-subnet-update.parameters.json",
+                    "dependsOn": [
+                        "active-directory"
+                    ]
                 }
             ]
         },
