@@ -77,12 +77,12 @@
                 },
                 "workloadType": "OLTP",
                 "sqlServerServiceAccountUserName": "svc-spsql1",
-                "sqlStorageAccountName": "spsqlstorage1",
+                "sqlStorageAccountName": "sqlstorage1",
                 "sqlStorageAccountType": "Standard_LRS",
                 "diagBlobEncryptionEnabled": true,
                 "sqlDatabases": "TestDB",
                 "sqlServerServiceAccountPassword": "sqlServerServiceAccountPassword",
-                "enableAcceleratedNetworking": true
+                "enableAcceleratedNetworking": false
             }
         },
         "witnessServerConfig": {
@@ -99,7 +99,7 @@
                     "diskSizeGB": "128"
                 },
                 "sqlStorageAccountType": "Standard_LRS",
-                "enableAcceleratedNetworking": true
+                "enableAcceleratedNetworking": false
             }
         },
         "adConfig": {

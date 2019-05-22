@@ -503,6 +503,167 @@
                     }
                 }
             }
+        },
+        {
+            "name": "ConfiguringAlwaysOn",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2018-05-01",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/PreparingAlwaysOnSqlServer"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('configuration').configuringAlwaysOn]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "sqlVMName": {
+                        "value": "[parameters('sqlServerConfig').vmName]"
+                    },
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "adminUsername": {
+                        "value": "[parameters('adminUsername')]"
+                    },
+                    "adminPassword": {
+                        "reference": {
+                            "keyVault": {
+                                "id": "[variables('derivedIds').keyVaultId]"
+                            },
+                            "secretName": "[parameters('keyVaultConfig').localAdminPasswordSecret]"
+                        }
+                    },
+                    "domainUsername": {
+                        "value": "[parameters('domainUsername')]"
+                    },
+                    "domainPassword": {
+                        "reference": {
+                            "keyVault": {
+                                "id": "[variables('derivedIds').keyVaultId]"
+                            },
+                            "secretName": "[parameters('keyVaultConfig').domainAdminPasswordSecret]"
+                        }
+                    },
+                    "domainName": {
+                        "value": "[parameters('adConfig').domainName]"
+                    },
+                    "serverOUPath": {
+                        "value": "[parameters('adConfig').serverOUPath]"
+                    },
+                    "accountOUPath": {
+                        "value": "[parameters('adConfig').accountOUPath]"
+                    },
+                    "sqlAOEPName": {
+                        "value": "[variables('sqlAOEPName')]"
+                    },
+                    "sqlServerServiceAccountUserName": {
+                        "value": "[parameters('sqlServerConfig').sqlServerServiceAccountUserName]"
+                    },
+                    "sqlServerServiceAccountPassword": {
+                        "reference": {
+                            "keyVault": {
+                                "id": "[variables('derivedIds').keyVaultId]"
+                            },
+                            "secretName": "[parameters('sqlServerConfig').sqlServerServiceAccountPassword]"
+                        }
+                    },
+                    "createClusterModulesURL": {
+                        "value": "[variables('configuration').createClusterModulesURL]"
+                    },
+                    "createClusterConfigurationFunction": {
+                        "value": "[variables('configuration').createClusterConfigurationFunction]"
+                    },
+                    "clusterName": {
+                        "value": "[variables('clusterName')]"
+                    },
+                    "sharePath": {
+                        "value": "[variables('sharePath')]"
+                    },
+                    "sqlAOAGName": {
+                        "value": "[variables('sqlAOAGName')]"
+                    },
+                    "sqlAOListenerName": {
+                        "value": "[variables('sqlAOListenerName')]"
+                    },
+                    "sqlAOListenerPort": {
+                        "value": "[parameters('sqlServerConfig').sqlAOListenerPort]"
+                    },
+                    "sqlLBName": {
+                        "value": "[variables('lbSettings').sqlLBName]"
+                    },
+                    "sqlLBIPAddress": {
+                        "value": "[parameters('sqlServerConfig').sqlLBIPAddress]"
+                    },
+                    "dnsServerName": {
+                        "value": "[parameters('dnsServerName')]"
+                    },
+                    "sqlwVMName": {
+                        "value": "[parameters('witnessServerConfig').vmName]"
+                    },
+                    "numberOfDisks": {
+                        "value": "[parameters('sqlServerConfig').dataDisks.numberOfSqlVMDisks]"
+                    },
+                    "workloadType": {
+                        "value": "[parameters('sqlServerConfig').workloadType]"
+                    },
+                    "sqlDatabases": {
+                        "value": "[parameters('sqlServerConfig').sqlDatabases]"
+                    },
+                    "clusterIP": {
+                        "value": "[parameters('sqlServerConfig').clusterIp]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "[concat('PostUpdateVM-SQLServer-', copyIndex())]",
+            "apiVersion": "2018-05-01",
+            "type": "Microsoft.Resources/deployments",
+            "copy": {
+                "name": "sqlvirtualMachineLoop",
+                "count": 2
+            },
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('configuration').postUpdateVms]"
+                },
+                "parameters": {
+                    "vmName": {
+                        "value": "[concat(parameters('sqlServerConfig').vmName, copyindex())]"
+                    },
+                    "backupConfig": {
+                        "value": "[parameters('backupconfig')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "Microsoft.Resources/deployments/ConfiguringAlwaysOn"
+            ]
+        },
+        {
+            "name": "PostUpdateVM-SQLWitness",
+            "apiVersion": "2018-05-01",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('configuration').postUpdateVms]"
+                },
+                "parameters": {
+                    "vmName": {
+                        "value": "[parameters('witnessServerConfig').vmName]"
+                    },
+                    "backupConfig": {
+                        "value": "[parameters('backupconfig')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "Microsoft.Resources/deployments/ConfiguringAlwaysOn"
+            ]
         }
     ],
     "outputs": {}

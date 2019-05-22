@@ -1,0 +1,45 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vnetArray": {
+            "value": [
+                {
+                    "name": "PwS2-validate-sql-server-cluster-VNET",
+                    "resourceGroup": "PwS2-validate-sql-server-cluster-RG",
+                    "addressPrefixes": [
+                        "10.250.0.0/20"
+                    ],
+                    "dhcpOptions": {
+                        "dnsServers": [
+                            "10.250.1.8",
+                            "10.250.1.9"
+                        ]
+                    },
+                    "subnets": [
+                        {
+                            "name": "APP",
+                            "properties": {
+                                "addressPrefix": "10.250.1.0/24"
+                            }
+                        },
+                        {
+                            "name": "DB",
+                            "properties": {
+                                "addressPrefix": "10.250.2.0/26"
+                            }
+                        }
+                    ],
+                    "tagValues": {
+                        "Owner": "build.pipeline@tpsgc-pwgsc.gc.ca",
+                        "CostCenter": "PSPC-EA",
+                        "Enviroment": "Validate",
+                        "Classification": "Unclassified",
+                        "Organizations": "PSPC-CCC-E&O",
+                        "DeploymentVersion": "2018-12-13-01"
+                    }
+                }
+            ]
+        }
+    }
+}
