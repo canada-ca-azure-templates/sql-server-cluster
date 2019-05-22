@@ -105,8 +105,8 @@
         "adConfig": {
             "value": {
                 "domainName": "pspc.gc.ca.local",
-                "serverOUPath": "CN=Computers,DC=shared,DC=pws3,DC=pspc,DC=gc,DC=ca, DC=local",
-                "accountOUPath": "CN=Users,DC=shared,DC=pws3,DC=pspc,DC=gc,DC=ca, DC=local"
+                "serverOUPath": "",
+                "accountOUPath": ""
             }
         },
         "backupConfig": {
@@ -119,7 +119,7 @@
         "tagValues": {
             "value": {
                 "workload": "Database",
-                "owner": "john.nephin@tpsgc-pwgsc.gc.ca",
+                "owner": "test.validate@tpsgc-pwgsc.gc.ca",
                 "businessUnit": "PSPC-GCPS",
                 "costCenterOwner": "PSPC-EA",
                 "environment": "Sandbox",
