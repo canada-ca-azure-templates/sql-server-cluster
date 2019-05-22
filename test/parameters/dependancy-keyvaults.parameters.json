@@ -26,6 +26,12 @@
                             }
                         },
                         {
+                            "name": "sqlServerServiceAccountPassword",
+                            "properties": {
+                                "value": "Validate123!"
+                            }
+                        },
+                        {
                             "name": "linuxDefaultPassword",
                             "properties": {
                                 "value": "Validate123!"
