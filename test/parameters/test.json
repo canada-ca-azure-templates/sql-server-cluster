@@ -8,7 +8,7 @@
         "keyVaultConfig": {
             "value": {
                 "existingRGName": "PwS2-validate-sql-server-cluster-RG",
-                "existingVaultName": "PwS2-cluster-KeyVault",
+                "existingVaultName": "PwS2-Sql-Backup-Vault1",
                 "localAdminPasswordSecret": "server2016DefaultPassword",
                 "domainAdminPasswordSecret": "adDefaultPassword"
             }
@@ -111,7 +111,7 @@
         "backupConfig": {
             "value": {
                 "existingBackupVaultRG": "PwS2-validate-sql-server-cluster-RG",
-                "existingBackupVaultName": "PwS2-Sql-Backup-Vault",
+                "existingBackupVaultName": "PwS2-Sql-Backup-Vault1",
                 "existingBackupPolicy": "DailyBackupPolicy"
             }
         },
