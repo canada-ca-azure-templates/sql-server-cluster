@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "vaultName": {
-        "value": "PwS2-Sql-BackupVault123fv"
+        "value": "PwS2-Sql-BackupVault124fv"
       },
       "policyName": {
           "value": "DailyBackupPolicy"
