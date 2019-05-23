@@ -128,10 +128,10 @@
             }
         },
         "scriptsBaseUrl": {
-            "value": "https://raw.githubusercontent.com/canada-ca-azure-templates/sql-server-cluster/master/template/"
+            "value": "https://raw.githubusercontent.com/canada-ca-azure-templates/sql-server-cluster/master/template/DSC"
         },
         "templatesBaseUrl": {
-            "value": "https://raw.githubusercontent.com/canada-ca-azure-templates/sql-server-cluster/master/template/"
+            "value": "https://raw.githubusercontent.com/canada-ca-azure-templates/sql-server-cluster/master/template/nested"
         }
 
     }
