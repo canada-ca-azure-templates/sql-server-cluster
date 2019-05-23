@@ -8,19 +8,19 @@
                     "name": "PwS2-validate-sql-server-cluster-VNET",
                     "resourceGroup": "PwS2-validate-sql-server-cluster-RG",
                     "addressPrefixes": [
-                        "10.250.0.0/20"
+                        "10.2.0.0/20"
                     ],
                     "subnets": [
                         {
                             "name": "APP",
                             "properties": {
-                                "addressPrefix": "10.250.1.0/24"
+                                "addressPrefix": "10.2.1.0/24"
                             }
                         },
                         {
                             "name": "DB",
                             "properties": {
-                                "addressPrefix": "10.250.2.0/26"
+                                "addressPrefix": "10.2.2.0/26"
                             }
                         }
                     ],

@@ -1,0 +1,130 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "containerSasToken": {
+            "value": ""
+        },
+        "keyVaultConfig": {
+            "value": {
+                "existingRGName": "PwS2-validate-sql-server-cluster-RG",
+                "existingVaultName": "PwS2-cluster-KeyVault",
+                "localAdminPasswordSecret": "server2016DefaultPassword",
+                "domainAdminPasswordSecret": "adDefaultPassword"
+            }
+        },
+        "vnetConfig": {
+            "value": {
+                "existingVnetName": "PwS2-validate-sql-server-cluster-VNET",
+                "existingVnetRG": "PwS2-validate-sql-server-cluster-RG",
+                "sqlSubnet": "10.250.2.0/26",
+                "dbSubnetName": "DB"
+            }
+        },
+        "location": {
+            "value": "canadacentral"
+        },
+        "adminUsername": {
+            "value": "azureadmin"
+        },
+        "domainUsername": {
+            "value": "azureadmin"
+        },
+        "dnsServerName": {
+            "value": "PwS2-RootDC01"
+        },
+        "sqlServerConfig": {
+            "value": {
+                "ClusterIp": "169.254.1.1",
+                "sqlLBIPAddress": "10.250.2.14",
+                "sqlLBName": "PwS2TSQL-LB",
+                "sqlAOListenerPort": "1433",
+                "vmSize": "Standard_DS3_v2",
+                "vmName": "PwS2TSTSQL",
+                "sqlServerLicenseType": "AHUB",
+                "sqlpatchingConfig": {
+                    "patchingEnabled": true,
+                    "dayOfWeek": "Sunday",
+                    "maintenanceWindowStartingHour": "2",
+                    "maintenanceWindowDuration": 60
+                },
+                "backupConfig": {
+                    "backupEnabled": true,
+                    "RetentionPeriod": 30,
+                    "EnableEncryption": true
+                },
+                "sqlBackupConfig": {
+                    "backupEnabled": true,
+                    "retentionPeriod": 30,
+                    "enableEncryption": true,
+                    "backupSystemDbs": true,
+                    "backupScheduleType": "Manual",
+                    "fullBackupFrequency": "Daily",
+                    "fullBackupStartTime": 2,
+                    "fullBackupWindowHours": 5,
+                    "logBackupFrequency": 60,
+                    "password": "Canada123!"
+                },
+                "imageReference": {
+                    "sqlImagePublisher": "MicrosoftSQLServer",
+                    "offer": "SQL2016SP2-WS2016",
+                    "sku": "Enterprise",
+                    "version": "latest"
+                },
+                "dataDisks": {
+                    "numberOfSqlVMDisks": "2",
+                    "diskSizeGB": "1024"
+                },
+                "workloadType": "OLTP",
+                "sqlServerServiceAccountUserName": "svc-tstsql1",
+                "sqlStorageAccountName": "tstsqlstorage11",
+                "sqlStorageAccountType": "Standard_LRS",
+                "diagBlobEncryptionEnabled": true,
+                "sqlDatabases": "TestServer",
+                "sqlServerServiceAccountPassword": "sqlServerServiceAccountPassword",
+                "enableAcceleratedNetworking": false
+            }
+        },
+        "witnessServerConfig": {
+            "value": {
+                "vmSize": "Standard_DS2_v2",
+                "vmName": "PwS2TSTSQLW",
+                "imageReference": {
+                    "publisher": "MicrosoftWindowsServer",
+                    "offer": "WindowsServer",
+                    "sku": "2016-Datacenter",
+                    "version": "latest"
+                },
+                "dataDisks": {
+                    "diskSizeGB": "128"
+                },
+                "sqlStorageAccountType": "Standard_LRS"
+            }
+        },
+        "adConfig": {
+            "value": {
+                "domainName": "pspc.gc.ca.local",
+                "serverOUPath": "CN=Computers,DC=shared,DC=pws3,DC=pspc,DC=gc,DC=ca, DC=local",
+                "accountOUPath": "CN=Users,DC=shared,DC=pws3,DC=pspc,DC=gc,DC=ca, DC=local"
+            }
+        },
+        "backupConfig": {
+            "value": {
+                "existingBackupVaultRG": "PwS2-validate-sql-server-cluster-RG",
+                "existingBackupVaultName": "PwS2-Sql-Backup-Vault",
+                "existingBackupPolicy": "DailyBackupPolicy"
+            }
+        },
+        "tagValues": {
+            "value": {
+                "workload": "Database",
+                "owner": "validation.test@tpsgc-pwgsc.gc.ca",
+                "businessUnit": "PSPC-CCC",
+                "costCenterOwner": "PSPC-EA",
+                "environment": "Sandbox",
+                "classification": "Unclassified",
+                "version": "0.1"
+            }
+        }
+    }
+}

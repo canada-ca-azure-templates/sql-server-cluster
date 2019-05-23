@@ -17,7 +17,7 @@
             "value": {
                 "existingVnetName": "PwS2-validate-sql-server-cluster-VNET",
                 "existingVnetRG": "PwS2-validate-sql-server-cluster-RG",
-                "sqlSubnet": "10.250.2.0/26",
+                "sqlSubnet": "10.2.2.0/26",
                 "dbSubnetName": "DB"
             }
         },
@@ -36,7 +36,7 @@
         "sqlServerConfig": {
             "value": {
                 "ClusterIp": "169.254.1.1",
-                "sqlLBIPAddress": "10.250.2.8",
+                "sqlLBIPAddress": "10.2.2.8",
                 "sqlLBName": "PwS3SPSQL-LB",
                 "sqlAOListenerPort": "1433",
                 "vmSize": "Standard_E4s_v3",

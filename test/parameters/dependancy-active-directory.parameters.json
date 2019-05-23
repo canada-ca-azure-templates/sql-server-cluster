@@ -27,25 +27,25 @@
             "value": "PwS2-validate-sql-server-cluster-VNET"
         },
         "vnetAddressRange": {
-            "value": "10.250.0.0/20"
+            "value": "10.2.0.0/20"
         },
         "adSubnetName": {
             "value": "APP"
         },
         "adSubnet": {
-            "value": "10.250.1.0/24"
+            "value": "10.2.1.0/24"
         },
         "RootDC1Name": {
             "value": "PwS2-RootDC01"
         },
         "RootDC1IPAddress": {
-            "value": "10.250.1.8"
+            "value": "10.2.1.8"
         },
         "RootDC2Name": {
             "value": "PwS2-RootDC02"
         },
         "RootDC2IPAddress": {
-            "value": "10.250.1.9"
+            "value": "10.2.1.9"
         },
         "tagValues": {
             "value": {
