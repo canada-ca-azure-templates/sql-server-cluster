@@ -8,7 +8,7 @@
         "keyVaultConfig": {
             "value": {
                 "existingRGName": "PwS2-validate-sql-server-cluster-RG",
-                "existingVaultName": "PwS2-Sql-[unique]-KeyVault",
+                "existingVaultName": "PwS2-Sql-slpx423cqos2q-K",
                 "localAdminPasswordSecret": "server2016DefaultPassword",
                 "domainAdminPasswordSecret": "adDefaultPassword"
             }
