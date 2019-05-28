@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "backupVaultName": {
-            "value": "PwS2-Sql-BackupVault124fv"
+            "value": "PwS2-Sql-BackupVault125fv"
         },
         "backupVaultRGName": {
             "value": "PwS2-validate-sql-server-cluster-RG"
