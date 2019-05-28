@@ -6,7 +6,7 @@
             "value": "PwS2-validate-sql-server-cluster-RG"
         },
         "keyVaultName": {
-            "value": "PwS2-Sql-cqos24-KeyVault"
+            "value": "PwS2-Sql-cqos25-KeyVault"
         },
         "DomainName": {
             "value": "pspc.gc.ca.local"
