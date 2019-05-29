@@ -77,7 +77,7 @@
                 },
                 "workloadType": "OLTP",
                 "sqlServerServiceAccountUserName": "svc-spsql1",
-                "sqlStorageAccountName": "sqlstorage1",
+                "sqlStorageAccountName": "sqlstorage01",
                 "sqlStorageAccountType": "Standard_LRS",
                 "diagBlobEncryptionEnabled": true,
                 "sqlDatabases": "TestDB",
@@ -112,7 +112,7 @@
         "backupConfig": {
             "value": {
                 "existingBackupVaultRG": "PwS2-validate-sql-server-cluster-RG",
-                "existingBackupVaultName": "PwS2-Sql-BackupVault122fg",
+                "existingBackupVaultName": "PwS2-Sql-BackupVault122fh",
                 "existingBackupPolicy": "DailyBackupPolicy"
             }
         },
