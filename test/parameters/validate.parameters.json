@@ -106,7 +106,7 @@
             "value": {
                 "domainName": "pspc.gc.ca.local",
                 "serverOUPath": "",
-                "accountOUPath": ""
+                "accountOUPath": "CN=Users,DC=shared,DC=pws3,DC=pspc-spac,DC=ca"
             }
         },
         "backupConfig": {
