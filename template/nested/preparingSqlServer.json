@@ -24,10 +24,12 @@
             "type": "string"
         },
         "serverOUPath":{
-            "type": "string"
+            "type": "string",
+            "defaultValue": ""
         },
         "accountOUPath":{
-            "type": "string"
+            "type": "string",
+            "defaultValue": ""
         },
         "sqlAOPrepareModulesURL": {
             "type": "string"
