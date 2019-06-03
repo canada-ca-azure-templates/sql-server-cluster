@@ -112,7 +112,7 @@
         "backupConfig": {
             "value": {
                 "existingBackupVaultRG": "PwS2-validate-sql-server-cluster-RG",
-                "existingBackupVaultName": "PwS2-Sql-BackupVault127fo",
+                "existingBackupVaultName": "PwS2-Sql-BackupVault127fp",
                 "existingBackupPolicy": "DailyBackupPolicy"
             }
         },
