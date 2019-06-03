@@ -105,7 +105,7 @@
         "adConfig": {
             "value": {
                 "domainName": "pspc.gc.ca.local",
-                "serverOUPath": "CN=Computers,DC=shared,DC=pws3,DC=pspc-spac,DC=ca",
+                "serverOUPath": "",
                 "accountOUPath": "CN=Users,DC=pspc,DC=gc,DC=ca,DC=local"
             }
         },
