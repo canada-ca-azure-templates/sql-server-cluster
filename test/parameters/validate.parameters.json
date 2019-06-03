@@ -37,7 +37,7 @@
             "value": {
                 "ClusterIp": "169.254.1.1",
                 "sqlLBIPAddress": "10.2.2.8",
-                "sqlLBName": "PwS3SPSQL-LB",
+                "sqlLBName": "PwS3SPSQL-B",
                 "sqlAOListenerPort": "1433",
                 "vmSize": "Standard_E4s_v3",
                 "vmName": "PwS3SPSQL",
