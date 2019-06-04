@@ -49,19 +49,7 @@
                     "dependsOn": [
                         "resource-groups"
                     ]
-                },
-                {
-                    "name": "active-directory",
-                    "resourceGroup": "PwS2-validate-sql-server-cluster-RG",
-                    "templateLink": "https://raw.githubusercontent.com/canada-ca-azure-templates/active-directory/20190516/template/azuredeploy.json",
-                    "parametersFile": "dependancy-active-directory.parameters.json",
-                    "dependsOn": [
-                        "backup-vault",
-                        "key-vault",
-                        "vnet-subnet"
-                    ]
                 }
-
             ]
         }
     }

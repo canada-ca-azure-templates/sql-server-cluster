@@ -5,7 +5,7 @@
         "keyvaultArray": {
             "value": [
                 {
-                    "name": "PwS2-validate-sql-server-cluster-KeyVault",
+                    "name": "PwS2-Sql-cqos27-KeyVault",
                     "resourceGroup": "PwS2-validate-sql-server-cluster-RG",
                     "sku": "Standard",
                     "enabledForDeployment": true,
@@ -21,6 +21,12 @@
                     "secrets": [
                         {
                             "name": "server2016DefaultPassword",
+                            "properties": {
+                                "value": "Validate123!"
+                            }
+                        },
+                        {
+                            "name": "sqlServerServiceAccountPassword",
                             "properties": {
                                 "value": "Validate123!"
                             }

@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "vaultName": {
-        "value": "PwS2-validate-sql-server-cluster-Vault"
+        "value": "PwS2-Sql-BackupVault127fq"
       },
       "policyName": {
           "value": "DailyBackupPolicy"
